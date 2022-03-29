@@ -1,11 +1,14 @@
-# paggination
+# Project Setup
 
-## Setup
-Replace the mongodb username and password in the env file under server
-DB_CONNECTION=mongodb+srv://<username>:<password>@cluster0.vhby2.mongodb.net/rest?retryWrites=true&w=majority
+## Server side settings
+	**cd server**
+	**npm install** *(This will install all required dependency for server)*
+	**npm start** *(This will start the server and listening to the port 3002)*
   
-##Start Server
-  npm start
+## Frontend setting 
+  **cd task**
+  **npm install** *(This will install all required dependency for server)*
   
-##Start React  
-  npm start
+  *(Change the REACT_APP_API_URL in the .env file to the server ip)*
+  
+  **npm start** *(This will start the react app)*
