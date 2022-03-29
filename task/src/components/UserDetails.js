@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectedUser, removeSelectedUser, changeUserEmail } from '../redux/actions/userActions';
 
 const UserDetails = () => {
+    const API_URL = process.env.REACT_APP_API_URL;
+
     const user = useSelector((state) => state.user);
     const { userId } = useParams();
     const dispatch = useDispatch();
@@ -16,7 +18,7 @@ const UserDetails = () => {
     }, [userId]);
 
     const fetchData = async () => {
-        const res = await fetch(`http://localhost:3002/users/${userId}`);
+        const res = await fetch(API_URL+`users/${userId}`);
         const data = await res.json();
         dispatch(selectedUser(data));
     }
@@ -27,7 +29,7 @@ const UserDetails = () => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email: user.email })
         };
-        const res = await fetch(`http://localhost:3002/users/${userId}`, requestOptions);
+        const res = await fetch(API_URL+`users/${userId}`, requestOptions);
         const data = await res.json();
         if (data.acknowledged === true) {
             alert("Data changed");
