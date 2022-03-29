@@ -4,12 +4,14 @@ import { Link } from 'react-router-dom';
 import { setPageCount, setUsers } from '../redux/actions/userActions';
 
 const UserComponent = () => {
+    const API_URL = process.env.REACT_APP_API_URL;
+
     const { currentPage, pageCount, size, users } = useSelector((state) => state.allUsers);
     const dispatch = useDispatch();
 
     useEffect(() => {
         const getPosts = async () => {
-            const res = await fetch(`http://localhost:3002/users?page=${currentPage}&size=${size}`);
+            const res = await fetch(API_URL + `users?page=${currentPage}&size=${size}`);
             const data = await res.json();
             dispatch(setPageCount(Math.ceil(data.total / size)));
             dispatch(setUsers(data.data));
